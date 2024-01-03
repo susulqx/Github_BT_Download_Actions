@@ -1,4 +1,4 @@
-name:下载BT文件
+name: 下载BT文件
 
 on:
   workflow_dispatch:
