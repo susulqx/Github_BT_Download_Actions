@@ -6,28 +6,28 @@ on:
       BT_URL:
         description: 'BT种子地址'
         required: true
-      NAME:
-        description: '下载完后另存名称'
-        required: true
+      #NAME:
+       #description: '下载完后另存名称'
+        #required: true
 jobs:
-  Download:
-    if: github.event.repository.owner.id == github.event.sender.id
-    runs-on: ubuntu-20.04
-    permissions:
+ Download:
+   if: github.event.repository.owner.id == github.event.sender.id
+   runs-on: ubuntu-20.04
+   permissions:
       contents: write
-    steps:
-    - name: 下载Aria2
-      run: |
-      mkdir ~/bin
+   steps:
+   - name: 下载Aria2
+     run: |
+      mkdir Download
       sudo apt-get install aria2 -y
-    - name: 下载BT种子
-      run: |
-      aria2c -d ~/bin -o ${{ github.event.inputs.NAME }}.mkv -s$(nproc --all) '${{ github.event.inputs.BT_URL }}' 
-    - name: 上传
-      uses: softprops/action-gh-release@v1
-      with:
-        files: ~/bin/${{ github.event.inputs.DEVICE_NAME }}.mkv
+   - name: 下载BT种子
+     run: |
+      aria2c -d ${GITHUB_WORKSPACE}/Download -s$(nproc --all) '${{ github.event.inputs.BT_URL }}' 
+   - name: 上传
+     uses: softprops/action-gh-release@v1
+     with:
+        files: Download/*.mkv
         name: ${{ github.event.inputs.NAME }}-${{ github.run_id }}
         tag_name: ${{ github.run_id }}
-    env:
+   env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
