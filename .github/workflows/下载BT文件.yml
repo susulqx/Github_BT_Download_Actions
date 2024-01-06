@@ -19,12 +19,12 @@ jobs:
    - name: 下载Aria2
      run: |
       mkdir Download
-      cd Download
-      wget https://github.com/susulqx/Github_BT_Download_Actions/blob/main/aria2.conf
+      cd /etc/
+      wget https://githubfast.com/susulqx/Github_BT_Download_Actions/blob/main/aria2.conf
       sudo apt-get install aria2 -y
    - name: 下载BT种子
      run: |
-      aria2c –conf-path=${GITHUB_WORKSPACE}/Download/aria2.conf -d ${GITHUB_WORKSPACE}/Download -s $(nproc --all) -j $(nproc --all) -x $(nproc --all) '${{ github.event.inputs.BT_URL }}' 
+      aria2c –conf-path=aria2.conf -d ${GITHUB_WORKSPACE}/Download -s $(nproc --all) -j $(nproc --all) -x $(nproc --all) '${{ github.event.inputs.BT_URL }}' 
    - name: 上传
      uses: softprops/action-gh-release@v1
      with:
