@@ -22,11 +22,11 @@ jobs:
       sudo apt-get install aria2 -y
    - name: 下载BT种子
      run: |
-      aria2c -d ${GITHUB_WORKSPACE}/Download -s$(nproc --all) '${{ github.event.inputs.BT_URL }}' 
+      aria2c -d ${GITHUB_WORKSPACE}/Download -s $(nproc --all) -j $(nproc --all) -x $(nproc --all) '${{ github.event.inputs.BT_URL }}' 
    - name: 上传
      uses: softprops/action-gh-release@v1
      with:
-        files: Download/*.mkv
+        files: Download/
         name: ${{ github.event.inputs.NAME }}-${{ github.run_id }}
         tag_name: ${{ github.run_id }}
    env:
