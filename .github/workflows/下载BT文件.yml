@@ -26,7 +26,7 @@ jobs:
    - name: 上传
      uses: softprops/action-gh-release@v1
      with:
-        files: Download/
+        files: Download/*.mkv
         name: ${{ github.event.inputs.NAME }}-${{ github.run_id }}
         tag_name: ${{ github.run_id }}
    env:
