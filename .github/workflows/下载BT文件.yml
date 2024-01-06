@@ -20,7 +20,7 @@ jobs:
      run: |
       mkdir Download
       cd /etc/
-      wget https://githubfast.com/susulqx/Github_BT_Download_Actions/blob/main/aria2.conf
+      wget https://github.com/susulqx/Github_BT_Download_Actions/blob/main/aria2.conf
       sudo apt-get install aria2 -y
    - name: 下载BT种子
      run: |
