@@ -6,9 +6,9 @@ on:
       BT_URL:
         description: 'BT种子地址'
         required: true
-      #NAME:
-       #description: '下载完后另存名称'
-        #required: true
+      NAME:
+        description: 'releases tag'
+        required: true
 jobs:
  Download:
    if: github.event.repository.owner.id == github.event.sender.id
